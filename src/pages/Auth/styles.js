@@ -6,11 +6,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(
-    to bottom,
-    rgba(8, 90, 140, 1) 0%,
-    rgba(36, 166, 166, 1) 100%
-  );
 `;
 export const SignIN = styled.form`
   background: #fff;
