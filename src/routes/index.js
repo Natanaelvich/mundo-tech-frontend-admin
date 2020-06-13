@@ -1,7 +1,8 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
 import Private from './private';
+import Guest from './guest';
 
 import Main from '../pages/Main';
 import SignIn from '../pages/Auth/SignIn';
@@ -11,8 +12,8 @@ export default function Routes() {
   return (
     <Switch>
       <Private path="/" exact component={Main} />
-      <Route path="/signin" component={SignIn} />
-      <Route path="/signup" component={SignUp} />
+      <Guest path="/signin" component={SignIn} />
+      <Guest path="/signup" component={SignUp} />
     </Switch>
   );
 }
