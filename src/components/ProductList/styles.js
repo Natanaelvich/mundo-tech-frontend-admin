@@ -4,9 +4,36 @@ export const Container = styled.div`
   padding-left: 44px;
   overflow-y: scroll;
   flex: 1;
+
+  header {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 181px;
+  }
+`;
+export const AddProduct = styled.button`
+  padding: 8px 16px;
+  border: 0;
+  background: #085a8c;
+  color: #fff;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 44px;
+
+  @media (max-width: 755px) {
+    margin-right: 0;
+  }
 `;
 export const Title = styled.h1`
-  margin-top: 181px;
+  margin-top: 32px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
