@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { Container } from './styles';
+import Menu from '~/components/Menu';
 
 function Main() {
   return (
     <Container>
-      <h1>Main</h1>
+      <Menu />
     </Container>
   );
 }
