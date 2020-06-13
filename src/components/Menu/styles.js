@@ -6,6 +6,7 @@ export const Container = styled.aside`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
 
   > h1 {
     font-family: Roboto;
