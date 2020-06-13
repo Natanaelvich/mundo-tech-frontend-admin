@@ -36,6 +36,8 @@ or
 - [Redux](https://redux.js.org) A Predictable State Container for JS Apps.
 - [Redux Saga](https://redux-saga.js.org/) async requests in redux.
 
+- [Immer](https://immerjs.github.io/immer/docs/introduction) Is a tiny package that allows you to work with immutable state in a   more convenient way. It is based on the copy-on-write mechanism.
+
 ### CSS
 
 - [styled-components](https://styled-components.com/) Use the best bits of ES6 and CSS to style your apps without stress 💅
