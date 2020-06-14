@@ -1,18 +1,16 @@
 import React, { useState, useMemo } from 'react';
 import { toast } from 'react-toastify';
 
-import { useHistory } from 'react-router-dom';
-import api from '../../services/api';
+import api from '~/services/api';
 
 import { Container, ChooseImg, Background } from './styles';
 import { Button } from '~/styles/components/Button';
 import camera from '~/assets/camera.svg';
 
 export default function ProductRegister() {
-  const history = useHistory();
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [quantidade, setQuantidade] = useState('');
+  const [amount, setAmount] = useState('');
   const [thumbnail, setThumbnail] = useState(null);
 
   const preview = useMemo(() => {
@@ -23,20 +21,19 @@ export default function ProductRegister() {
     e.preventDefault();
     const data = new FormData();
 
-    data.append('thumbnail', thumbnail);
+    data.append('file', thumbnail);
     data.append('name', name);
-    data.append('price', price);
-    data.append('quantidade', Number(quantidade));
+    data.append('price', Number(price));
+    data.append('amount', Number(amount));
+    data.append('category_id', 1);
+
     await api
-      .post('/spots', data, {
-        headers: { user_id: localStorage.getItem('user') },
-      })
+      .post('/products', data)
       .then(() => {
-        toast.success('spot cadastrado com sucesso');
-        history.push('/main');
+        toast.success('produto cadastrado com sucesso');
       })
       .catch(err => {
-        toast.error(`falha ao cadastrar spot: ${err}`);
+        toast.error(`falha ao cadastrar produto: ${err}`);
       });
   }
 
@@ -77,13 +74,13 @@ export default function ProductRegister() {
               value={price}
               onChange={txt => setPrice(txt.target.value)}
             />
-            <label htmlFor="quantidade">QUANTIDADE</label>
+            <label htmlFor="amount">amount</label>
             <input
               required
               type="text"
-              id="quantidade"
-              value={quantidade}
-              onChange={txt => setQuantidade(txt.target.value)}
+              id="amount"
+              value={amount}
+              onChange={txt => setAmount(txt.target.value)}
             />
             <Button>Cadastrar</Button>
           </form>
