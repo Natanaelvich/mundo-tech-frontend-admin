@@ -8,35 +8,41 @@ import { Container, ChooseImg, Background } from './styles';
 import { Button } from '~/styles/components/Button';
 import camera from '~/assets/camera.svg';
 
-export default function ProducDetail() {
+export default function ProducDetail({ location }) {
   const history = useHistory();
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [quantidade, setQuantidade] = useState('');
+  const product = location.state;
+
+  const [name, setName] = useState(product.name);
+  const [price, setPrice] = useState(product.price);
+  const [amount, setAmount] = useState(product.amount);
   const [thumbnail, setThumbnail] = useState(null);
 
   const preview = useMemo(() => {
-    return thumbnail ? URL.createObjectURL(thumbnail) : null;
-  }, [thumbnail]);
+    return thumbnail
+      ? URL.createObjectURL(thumbnail)
+      : product.url_image;
+  }, [product.url_image, thumbnail]);
 
   async function handleSubmit(e) {
     e.preventDefault();
     const data = new FormData();
 
-    data.append('thumbnail', thumbnail);
+    if (thumbnail) {
+      data.append('file', thumbnail);
+    }
     data.append('name', name);
     data.append('price', price);
-    data.append('quantidade', Number(quantidade));
+    data.append('amount', Number(amount));
+    data.append('category_id', 1);
+
     await api
-      .post('/spots', data, {
-        headers: { user_id: localStorage.getItem('user') },
-      })
+      .put(`products/${product.id}`, data)
       .then(() => {
-        toast.success('spot cadastrado com sucesso');
-        history.push('/main');
+        toast.success('produto atualizado com sucesso');
+        history.push('/');
       })
       .catch(err => {
-        toast.error(`falha ao cadastrar spot: ${err}`);
+        toast.error(`falha ao atualizar produto: ${err}`);
       });
   }
 
@@ -77,13 +83,13 @@ export default function ProducDetail() {
               value={price}
               onChange={txt => setPrice(txt.target.value)}
             />
-            <label htmlFor="quantidade">QUANTIDADE</label>
+            <label htmlFor="amount">amount</label>
             <input
               required
               type="text"
-              id="quantidade"
-              value={quantidade}
-              onChange={txt => setQuantidade(txt.target.value)}
+              id="amount"
+              value={amount}
+              onChange={txt => setAmount(txt.target.value)}
             />
             <Button>Cadastrar</Button>
           </form>

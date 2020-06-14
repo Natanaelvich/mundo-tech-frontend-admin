@@ -28,7 +28,7 @@ export const AddProduct = styled.button`
   justify-content: center;
   margin-right: 44px;
 
-  @media (max-width: 755px) {
+  @media (max-width: 800px) {
     margin-right: 0;
   }
 `;
@@ -81,11 +81,16 @@ export const ConatinerItem = styled.button`
     color: #000000;
   }
 `;
-export const ImageItem = styled.img`
-  width: 169px;
+export const ImageItem = styled.div`
   height: 163px;
+  width: 169px;
 
-  background: #f3f3f3;
+  background: url(${props => props.src});
+  background-color: #fff;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
   border-radius: 12px;
 `;
 export const DescriptionsItem = styled.div`

@@ -51,7 +51,9 @@ export const Container = styled.div`
 
 export const ChooseImg = styled.label`
   margin-bottom: 20px;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
   display: flex;
   height: 160px;
